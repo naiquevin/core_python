@@ -1,0 +1,5 @@
+#python specific
+*.pyc
+
+# backup files to ignore
+*~
