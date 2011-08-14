@@ -1,3 +1,5 @@
+from math import pi
+
 # 5.2
 def calculate_product(a, b):
     return a * b
@@ -89,8 +91,100 @@ def denominate(amount):
         return '%d %s' % (parts, unit)
     else:
         return '%d %s %s' % (parts, unit, denominate(float(r)/100))    
+
+#5.5
+def calculator(expression):
+    """
+    Arithmetic. Create a calculator application. Write code that will take two numbers and
+    an operator in the format: N1 OP N2, where N1 and N2 are floating point or integer
+    values, and OP is one of the following: +, -, *, /, %, **, representing addition,
+    subtraction, multiplication, division, modulus/remainder, and exponentiation,
+    respectively, and displays the result of carrying out that operation on the input
+    operands. Hint: You may use the string split() method, but you cannot use the exal
+    () built-in function
+    """
+    n1, op, n2 = expression.split(' ')
+    n1 = int_or_float(n1)
+    n2 = int_or_float(n2)    
+    value = 0
+    if op == '+':
+        value = n1 + n2
+    elif op == '-':
+        value = n1 - n2
+    elif op == '*':
+        value = n1 * n2
+    elif op == '/':
+        value = n1 / n2
+    elif op == '%':
+        value = n1 % n2
+    elif op == '**':
+        value = n1 ** n2
+    return value
+
+def int_or_float(string):
+    try:
+        value = int(string)
+    except ValueError:
+        try:
+            value = float(string)
+        except ValueError:
+            print 'Not an int or float'
+    return value
+
+# 5.8
+def area_square(side):
+    return side ** 2
+
+def area_cube(side):
+    return side ** 3
+
+def area_circle(radius):
+    return pi * (radius ** 2)
+
+def area_sphere(radius):
+    return (3.0/4) * pi * (radius ** 2)
+
+# 5.10
+# Conversion. Create a pair of functions to convert Fahrenheit to Celsius temperature
+# values. C = (F - 32) * (5 / 9 ) should help you get started. We recommend you try
+# true division with this exercise, otherwise take whatever steps are necessary to ensure
+# accurate results.
+
+def Fnht_to_Cel(fnht):
+    return (fnht - 32) * (5.0 / 9)
+
+def Cel_to_Fnht(cel):
+    return (cel * 9.0 / 5.0) + 32
+
+# 5.11
+def output_even(maxnum=20):
+    nums = [str(i) for i in range(maxnum) if (i%2 == 0)]
+    print ", ".join(nums)
+
+def output_odd(maxnum=20):
+    nums = [str(i) for i in range(maxnum) if (i%2 == 1)]
+    print ", ".join(nums)
+
+# 5.12 todo
+
+# 5.13
+def time_to_mins(t):
+    """
+    Conversion. Write a function that will take a time period measured in hours and
+    minutes and return the total time in minutes only
+    """
+    import re
+    match = re.match(r"(\d+)\s+hours\s+(\d+)\s+minutes", t)
+    if match is None:
+        print "Please provide the input in format - 'h hours m minutes'"
+        exit()
+    hours, minutes = match.groups()
+    return '%d minutes' % ((int(hours) * 60) + int(minutes))
  
 if __name__ == '__main__':
-    print denominate(0.79)
+    # print Fnht_to_Cel(70)
+    # print Cel_to_Fnht(21.1)
+    # output_even()
+    # output_odd()
+    print time_to_mins('3 hours 40 minutes')
     
-# 5.8 
