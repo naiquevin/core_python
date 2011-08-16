@@ -54,9 +54,25 @@ def string_cmp(string1, string2):
         if string2[i] != s:
             return False
     return True
-            
+
+# 6.5 c
+def is_palindrome(string):
+    """
+    Determine if a string is palindromic (the same backward as it is forward). Extra
+    credit: Add code to suppress symbols and whitespace if you want to process
+    anything other than strict palindromes.
+    """
+    if len(string) in [0, 1]:
+        return True
+    else:        
+        first = string[0]
+        last = string[-1]
+        if first != last:
+            return False
+        else:
+            return is_palindrome(string[1:-1])
     
-
-
-
-
+    
+if __name__ == '__main__':
+    # print is_palindrome('abca')
+    pass

@@ -22,6 +22,7 @@ class TestSequencesExercise(unittest.TestCase):
         self.assertTrue(exercises.sequences.string_cmp('hello4', 'hello4'))
         self.assertTrue(exercises.sequences.string_cmp('55WorlD', '55woRLd'))
 
-
-        
-        
+    def test_is_palindrome(self):
+        self.assertTrue(exercises.sequences.is_palindrome('abcdefghhgfedcba'))
+        self.assertTrue(exercises.sequences.is_palindrome('pqrqp'))
+        self.assertFalse(exercises.sequences.is_palindrome('wxyz'))        
