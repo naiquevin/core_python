@@ -97,6 +97,43 @@ def mimic_strip(string):
         j = j-1
     new_string = new_string[:j+1] # since i started with -1
     return new_string
+
+# 6.8
+def textify_numbers(num):
+    """
+    Lists. Given an integer value, return a string with the equivalent English text of each
+    digit. For example, an input of 89 results in "eight-nine" being returned. Extra credit:
+    Return English text with proper usage, i.e., "eighty-nine." For this part of the exercise,
+    restrict values to be between 0 and 1,000.
+    """
+    if num > 1000 or num < 0:
+        print "Please give an input between 0-1000"
+        exit(1)
+    map = {
+        '0': 'zero',
+        '1': 'one',
+        '2': 'two',
+        '3': 'three',
+        '4': 'four',
+        '5': 'five',
+        '6': 'six',
+        '7': 'seven',
+        '8': 'eight',
+        '9': 'nine'        
+        }
+    num_str = str(num)
+    return "-".join([map[k] for k in num_str])
+
+# 6.9
+def minutes_to_hours(minutes):
+    """
+    Conversion. Create a sister function to your solution for Exercise 5.13 to take the total
+    number of minutes and return the same time interval in hours and minutes,
+    maximizing on the total number of hours.
+    """
+    h, m = minutes/60, minutes%60
+    text_hours, text_minutes = 'hour' if h == 1 else 'hours', 'minute' if m == 1 else 'minutes'
+    return '%d %s and %d %s' % (h, text_hours, m, text_minutes)
     
     
 if __name__ == '__main__':

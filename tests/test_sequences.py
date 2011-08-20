@@ -34,3 +34,12 @@ class TestSequencesExercise(unittest.TestCase):
         self.assertEquals('stripme!', exercises.sequences.mimic_strip('  stripme! '))
         self.assertEquals('Hello World!', exercises.sequences.mimic_strip(' Hello World!   '))
         self.assertEquals('', exercises.sequences.mimic_strip('    '))
+
+    def test_textify_numbers(self):
+        self.assertEquals('eight-nine', exercises.sequences.textify_numbers(89))
+        self.assertEquals('two-seven-zero', exercises.sequences.textify_numbers(270))
+
+    def test_minutes_to_hours(self):
+        self.assertEquals('2 hours and 30 minutes', exercises.sequences.minutes_to_hours(150))
+        self.assertEquals('0 hours and 23 minutes', exercises.sequences.minutes_to_hours(23))
+        self.assertEquals('1 hour and 0 minutes', exercises.sequences.minutes_to_hours(60))
