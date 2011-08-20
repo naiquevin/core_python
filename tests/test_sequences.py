@@ -26,3 +26,11 @@ class TestSequencesExercise(unittest.TestCase):
         self.assertTrue(exercises.sequences.is_palindrome('abcdefghhgfedcba'))
         self.assertTrue(exercises.sequences.is_palindrome('pqrqp'))
         self.assertFalse(exercises.sequences.is_palindrome('wxyz'))        
+
+    def test_make_palindrome(self):
+        self.assertEquals('helloolleh', exercises.sequences.make_palindrome('hello'))
+
+    def test_mimic_strip(self):
+        self.assertEquals('stripme!', exercises.sequences.mimic_strip('  stripme! '))
+        self.assertEquals('Hello World!', exercises.sequences.mimic_strip(' Hello World!   '))
+        self.assertEquals('', exercises.sequences.mimic_strip('    '))

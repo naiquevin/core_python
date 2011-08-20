@@ -71,6 +71,32 @@ def is_palindrome(string):
             return False
         else:
             return is_palindrome(string[1:-1])
+# 6.5 d
+def make_palindrome(string):
+    """
+    Take a string and append a backward copy of that string, making a palindrome.    
+    """
+    return string + string[::-1]
+
+# 6.6
+def mimic_strip(string):
+    """
+    Strings. Create the equivalent to string.strip(): Take a string and remove all leading
+    and trailing whitespace. (Use of string.*strip() defeats the purpose of this exercise.)
+    """
+    n = len(string)
+    i = 0
+    j = -1
+    new_string = ''
+    while i < n and string[i] == ' ':
+        i = i+1
+    new_string = string[i:]
+    if len(new_string) == 0:
+        return new_string
+    while new_string[j] == ' ':
+        j = j-1
+    new_string = new_string[:j+1] # since i started with -1
+    return new_string
     
     
 if __name__ == '__main__':
