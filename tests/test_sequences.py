@@ -9,7 +9,7 @@ class TestSequencesExercise(unittest.TestCase):
         self.assertEqual([34, 10, 5, 3, 1, 0], exercises.sequences.sort_numlist_desc([10, 3, 5, 0, 1, 34]))
 
     def test_sort_string_desc(self):
-        self.assertEqual('dlrowolleh', exercises.sequences.sort_string_desc('helloworld'))
+        self.assertEqual('xvsfdca', exercises.sequences.sort_string_desc('advfcxs'))
 
     def test_idcheck(self):
         self.assertTrue(exercises.sequences.idcheck('abc'))

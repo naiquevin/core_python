@@ -15,7 +15,7 @@ def sort_string_desc(s):
     Do the same thing, but for strings and in reverse alphabetical (largest-to-
     smallest lexicographic) order.
     """
-    return s[::-1]
+    return "".join(sorted(s, reverse=True))
 
 # 6.2
 def idcheck(identifier):
