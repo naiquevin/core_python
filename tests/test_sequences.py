@@ -43,3 +43,37 @@ class TestSequencesExercise(unittest.TestCase):
         self.assertEquals('2 hours and 30 minutes', exercises.sequences.minutes_to_hours(150))
         self.assertEquals('0 hours and 23 minutes', exercises.sequences.minutes_to_hours(23))
         self.assertEquals('1 hour and 0 minutes', exercises.sequences.minutes_to_hours(60))
+
+    def test_rochambeau(self):
+        cases = [
+            ("rock", "paper", "computer wins!!"),
+            ("paper", "rock", "you win!!"),
+            ("rock", "scissors", "you win!!"),
+            ("scissors", "rock", "computer wins!!"),
+            ("paper", "scissors", "computer wins!!"),
+            ("scissors", "paper", "you win!!"),
+            ("rock", "rock", "its a draw!!"),
+            ("paper", "paper", "its a draw!!"),
+            ("scissors", "scissors", "its a draw!!")
+            ]
+        for user, computer, exp_result in cases:
+            r = exercises.sequences.Rochambeau()
+            result = r.find_winner(user, computer)
+            self.assertEquals(exp_result, result)
+
+    def test_dateconvertor(self):
+        # days upto year end
+        days = exercises.sequences.DateConvertor.days_upto_year_end(20, 1, 1992)
+        self.assertEquals(346, days)
+        days = exercises.sequences.DateConvertor.days_upto_year_end(20, 1, 1993)
+        self.assertEquals(345, days)
+        days = exercises.sequences.DateConvertor.days_upto_year_end(20, 12, 1992)
+        self.assertEquals(11, days)
+        days = exercises.sequences.DateConvertor.days_from_year_start(20, 3, 2000)
+        self.assertEquals(80, days)
+        days = exercises.sequences.DateConvertor.days_from_year_start(20, 3, 2003)
+        self.assertEquals(79, days)
+        d = exercises.sequences.DateConvertor("12/12/2000", "20/2/2003")
+        from datetime import datetime
+        actual = (datetime.strptime('2003-2-20', "%Y-%m-%d")- datetime.strptime('2000-12-12',"%Y-%m-%d")).days
+        self.assertEquals(actual,d.days_between())        

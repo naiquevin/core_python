@@ -2,6 +2,8 @@
 
 import string
 import keyword
+from random import choice
+from numbers import leap_year
 
 # 6.3 a
 def sort_numlist_desc(li):
@@ -134,8 +136,120 @@ def minutes_to_hours(minutes):
     h, m = minutes/60, minutes%60
     text_hours, text_minutes = 'hour' if h == 1 else 'hours', 'minute' if m == 1 else 'minutes'
     return '%d %s and %d %s' % (h, text_hours, m, text_minutes)
+
+# 6.14        
+class Rochambeau(object):
+    """
+    *Random Numbers. Design a "rock, paper, scissors" game, sometimes called
+    "Rochambeau," a game you may have played as a kid. Here are the rules. At the same
+    time, using specified hand motions, both you and your opponent have to pick from
+    one of the following: rock, paper, or scissors. The winner is determined by these rules,
+    which form somewhat of a fun paradox:
+    a.
+    the paper covers the rock,
+    b.
+    the rock breaks the scissors,
+    c.
+    the scissors cut the paper. In your computerized version, the user enters his/
+    her guess, the computer randomly chooses, and your program should indicate
+    a winner or draw/tie. Note: The most algorithmic solutions use the fewest
+    number of if statements.
+    """
+
+    weapons = ["rock", "paper", "scissors"]
     
+    @staticmethod
+    def runner():
+    	user_choice = None
+    	while user_choice not in Rochambeau.weapons:
+    	    if user_choice is not None:
+    	        print "Sorry you can't choose that. Please enter a correct one now. okay!!"
+    	    user_choice = raw_input("Choose your weapon from among rock, paper or scissors ? > ")
+    	computer_choice = choice(Rochambeau.weapons)
+        roch = Rochambeau()
+        result = roch.find_winner(user_choice, computer_choice)
+    	print "Computer chose %s" % computer_choice
+    	print "You chose %s" % user_choice
+        print result
+        again = raw_input("Play again ? (y/n) > ")
+    	if again == 'y':
+    	    Rochambeau.runner()
+    	else:
+    	    print "Okay. It was nice playing with you!!"
+    	    exit(1)
+
+    def find_winner(self, user_choice, computer_choice):
+        result = 'computer wins!!'
+        user_power = Rochambeau.weapons.index(user_choice)
+        computer_power = Rochambeau.weapons.index(computer_choice)
+    	# print user_power, computer_power
+    	if user_power == computer_power:
+    	    result = 'its a draw!!'
+    	elif user_power - computer_power in [1, -2]:
+    	    result = 'you win!!'
+        return result    
+
+# 6.15
+class DateConvertor(object):
+    """
+    Conversion.
+    a.
+    Given a pair of dates in some recognizable standard format such as MM/DD/YY
+    or DD/MM/YY, determine the total number of days that fall between both dates.
+    b.
+    Given a person's birth date, determine the total number of days that person
+    has been alive, including all leap days.
+    c.
+    Armed with the same information from (b) above, determine the number of
+    days remaining until that person's next birthday.
+    """
+    months = [
+        (1, 31),
+        # feb will be inserted dynamically depending upon leap year
+        (3, 31),
+        (4, 30),
+        (5, 31),
+        (6, 30),
+        (7, 31),
+        (8, 31),
+        (9, 30),
+        (10, 31),
+        (11, 30),
+        (12, 31)
+        ]
+
+    def __init__(self, d1, d2):
+        self.d1 = tuple([int(x) for x in d1.split('/')])
+        self.d2 = tuple([int(x) for x in d2.split('/')])
+
+    def days_between(self):
+        days  = DateConvertor.days_upto_year_end(*self.d1)
+        days += sum((366 if leap_year(y) else 365) for y in range(self.d1[2]+1, self.d2[2]))
+        days += DateConvertor.days_from_year_start(*self.d2)
+        return days
+    
+    @staticmethod
+    def days_upto_year_end(day, month, year):
+        # copy months list twice and set the correct number of days for feb
+        months = DateConvertor.months[:]
+        months[1:1] = [(2, 29)] if leap_year(year) else [(2, 28)]
+        days = months[month-1][1] - day
+        rem_months = months[month:]
+        days += sum(int(n) for m, n in rem_months)
+        return days
+
+    @staticmethod
+    def days_from_year_start(day, month, year):
+        # copy months list twice and set the correct number of days for feb
+        months = DateConvertor.months[:]
+        months[1:1] = [(2, 29)] if leap_year(year) else [(2, 28)]
+        prev_months = months[:month-1]
+        days = day + sum(int(n) for m, n in prev_months)
+        return days
     
 if __name__ == '__main__':
     # print is_palindrome('abca')
+    # Rochambeau.runner()
     pass
+    
+
