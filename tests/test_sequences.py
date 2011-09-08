@@ -77,3 +77,19 @@ class TestSequencesExercise(unittest.TestCase):
         from datetime import datetime
         actual = (datetime.strptime('2003-2-20', "%Y-%m-%d")- datetime.strptime('2000-12-12',"%Y-%m-%d")).days
         self.assertEquals(actual,d.days_between())        
+
+    def test_matrix_add(self):        
+        matrix = exercises.sequences.Matrix
+        m1 = ((1, 2), (3, 4))
+        m2 = ((3, 5), (5, 6))
+        s = ((4, 7), (8, 10))
+        self.assertEquals(s, matrix.add(m1, m2))
+        m1 = ((1, 2, 3), (4, 5, 6), (3, 5, 13))
+        m2 = ((3, 4, 5), (3, 4, 5), (4, 5, 10))
+        s = ((4, 6, 8), (7, 9, 11), (7, 10, 23))
+        self.assertEquals(s, matrix.add(m1, m2))
+
+    def test_matrix_multiply(self):
+        matrix = exercises.sequences.Matrix
+        m1, m2 = ((1, 2, 3), (4, 5, 6)), ((1, 2), (3, 4), (5, 6))
+        self.assertEquals(((22, 28), (49, 64)), matrix.multiply(m1, m2))

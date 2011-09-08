@@ -246,6 +246,54 @@ class DateConvertor(object):
         prev_months = months[:month-1]
         days = day + sum(int(n) for m, n in prev_months)
         return days
+
+# 6.1 Matrices. Process the addition and multiplication of a pair of M by N matrices.
+class Matrix(object):
+    @staticmethod
+    def add(m1, m2):
+        """
+    	Matrix Addition
+    	"""    	
+    	# rows
+    	r1 = len(m1)
+    	r2 = len(m2)
+    	# columns
+    	c1 = len(m1[0])
+    	c2 = len(m2[0])
+    	if r1 != r2 or c1 != c2:
+    	    print "Only matrices of the same order can be added"
+    	    exit(1)
+    	m3 = []
+    	for i in range(len(m1)):
+    	    # print i, m1[i], m2[i]
+    	    a = []
+    	    for j in range(len(m1[i])):
+    	        a.append(m1[i][j] + m2[i][j])
+    	    m3.append(a)
+    	return tuple([tuple(s) for s in m3])
+
+    @staticmethod
+    def multiply(m1, m2):
+        # rows
+    	r1 = len(m1)
+    	r2 = len(m2)
+    	# columns
+    	c1 = len(m1[0])
+    	c2 = len(m2[0])
+    	if c1 != r2:
+    	    print "Invalid matrices"
+    	    exit(1)
+        m3 = []
+        for i in range(r1):
+            a = []
+            for j in range(c2):
+                s = 0
+                for k in range(r2):
+                    s += m1[i][k]*m2[k][j]
+                a.append(s)
+            m3.append(a)
+    	return tuple([tuple(s) for s in m3])
+    
     
 if __name__ == '__main__':
     # print is_palindrome('abca')
