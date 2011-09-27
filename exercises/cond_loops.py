@@ -38,7 +38,7 @@ def get_prime_factors(n):
     Note that there could be repeats in the list. So if you gave an input of 20, the output
     would be [2, 2, 5].
     """
-    f = [x for x in getfactors(n) if is_prime(x)]
+    f = [x for x in getfactors(n) if is_prime(x) or x == 1]
     while True:
         m = reduce(lambda x, y: x*y, f)
         # print f, n, m
@@ -49,9 +49,23 @@ def get_prime_factors(n):
             f.extend(get_prime_factors(q))
     return sorted(f)
 
+# 8.7
+def isperfect(n):
+    """
+    Perfect Numbers. A perfect number is one whose factors (except itself) sum to itself.
+    For example, the factors of 6 are 1, 2, 3, and 6. Since 1 + 2 + 3 is 6, it (6) is
+    considered a perfect number. Write a function called isperfect() which takes a single
+    integer input and outputs 1 if the number is perfect and 0 otherwise.
+    """
+    factors = filter(lambda x: x != n, getfactors(n))
+    if sum(factors) == n:
+        return 1
+    else:
+        return 0
 
 if __name__ == '__main__':
     # print is_prime(227)
     # print getfactors(31)
-    # print get_prime_factors(534358)
+    # print get_prime_factors(17)
+    # print isperfect(28) # others 6, 496
     pass        
