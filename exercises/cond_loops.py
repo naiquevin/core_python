@@ -63,9 +63,36 @@ def isperfect(n):
     else:
         return 0
 
+def factorial(n):
+    """
+    Factorial. The factorial of a number is defined as the product of all values from one to
+    that number. A shorthand for N factorial is N! where N! == factorial(N) == 1 * 2 * 3
+    * ... * (N-2) * (N-1) * N. So 4! == 1 * 2 * 3 * 4. Write a routine such that given N, the
+    value N! is returned.
+    """
+    return 1 if n == 1 else n * factorial(n-1)
+
+def fibonacci(n):
+    """
+    Fibonacci Numbers. The Fibonacci number sequence is 1, 1, 2, 3, 5, 8, 13, 21, etc. In
+    other words, the next value of the sequence is the sum of the previous two values in
+    the sequence. Write a routine that, given N, displays the value of the Nth Fibonacci
+    number. For example, the first Fibonacci number is 1, the 6th is 8, and so on.
+    """
+    c = 0
+    f = [1]
+    while c < n-1:
+        c_1 = f[-1]
+        c_2 = 0 if len(f) <= 1 else f[-2]        
+        f.append(c_1 + c_2)
+        c += 1
+    return f[-1]
+
 if __name__ == '__main__':
     # print is_prime(227)
     # print getfactors(31)
     # print get_prime_factors(17)
     # print isperfect(28) # others 6, 496
+    # print factorial(5)
+    print fibonacci(6)
     pass        
