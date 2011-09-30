@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import string
 
 # 8.4
 def is_prime(n):
@@ -88,11 +89,32 @@ def fibonacci(n):
         c += 1
     return f[-1]
 
+# 8.10
+def text_processor(sentence):
+    """
+    Text Processing. Determine the total number of vowels, consonants, and words
+    (separated by spaces) in a text sentence. Ignore special cases for vowels and
+    consonants such as "h," "y," "qu," etc. Extra credit: create code to handle those
+    special case.
+    """
+    v = ['a', 'e', 'i', 'o', 'u']
+    words = sentence.split(" ")
+    vowels = [s for s in sentence if s in v]
+    c = [s for s in list(string.letters) if s not in v]
+    consonants = [s for s in "".join(words) if s in c]
+    result = {
+        "words": len(words),
+        "vowels": len(vowels),
+        "consonants": len(consonants)
+        }
+    return result
+
 if __name__ == '__main__':
     # print is_prime(227)
     # print getfactors(31)
     # print get_prime_factors(17)
     # print isperfect(28) # others 6, 496
     # print factorial(5)
-    print fibonacci(6)
+    # print fibonacci(6)
+    print text_processor(text_processor.__doc__)
     pass        
