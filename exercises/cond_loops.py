@@ -17,7 +17,7 @@ def is_prime(n):
         if n%f == 0:
             return  False
             break
-        f -= 1        
+        f -= 1
     else:
         return True
 
@@ -84,7 +84,7 @@ def fibonacci(n):
     f = [1]
     while c < n-1:
         c_1 = f[-1]
-        c_2 = 0 if len(f) <= 1 else f[-2]        
+        c_2 = 0 if len(f) <= 1 else f[-2]
         f.append(c_1 + c_2)
         c += 1
     return f[-1]
@@ -109,6 +109,46 @@ def text_processor(sentence):
         }
     return result
 
+# 8.11
+class ContactBook(object):
+    """
+    Text Processing. Write a program to ask the user to input a list of names, in the
+    format "Last Name, First Name," i.e., last name, comma, first name. Write a function
+    that manages the input so that when/if the user types the names in the wrong order, i.
+    e., "First Name Last Name," the error is corrected, and the user is notified. This
+    function should also keep track of the number of input mistakes. When the user is
+    done, sort the list, and display the sorted names in "Last Name, First Name" order.
+    """
+
+    def __init__(self):
+        self.mistakes = 0
+        self.contacts = []
+
+    def __repr__(self):
+        return "\n" + "\n".join(sorted(self.contacts))
+
+    def take_input(self):
+        name = raw_input("Please enter name #%d > " % len(self.contacts))
+        if len(name.split(',')) == 1:
+            self.mistakes += 1
+            print "Wrong Format... Should be LastName, FirstName"
+            print "You have done this %d time(s) already! Fixing name.." % self.mistakes
+            first, last = name.split(' ')
+            name = "%s, %s" % (last, first)
+        self.contacts.append(name)
+
+    @staticmethod
+    def run():
+        print "Please enter names in format Lastname, Firstname"
+        cb = ContactBook()
+        another = True
+        while another:
+            cb.take_input()
+            ask_another = raw_input("Add another? (yes/no) > ")
+            another = False if ask_another == 'no' else True
+        # sort here
+        print cb
+
 if __name__ == '__main__':
     # print is_prime(227)
     # print getfactors(31)
@@ -116,5 +156,7 @@ if __name__ == '__main__':
     # print isperfect(28) # others 6, 496
     # print factorial(5)
     # print fibonacci(6)
-    print text_processor(text_processor.__doc__)
-    pass        
+    # print text_processor(text_processor.__doc__)
+    ContactBook.run()
+    pass
+
