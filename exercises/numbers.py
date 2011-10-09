@@ -13,7 +13,7 @@ class InputError(Exception):
     def __init__(self, msg):
         self.msg = msg
     def __str__(self):
-        return repr(this.msg)
+        return repr(self.msg)
 
 def calculate_grade(score):
     if score > 100:
@@ -186,5 +186,4 @@ if __name__ == '__main__':
     # print Cel_to_Fnht(21.1)
     # output_even()
     # output_odd()
-    print time_to_mins('3 hours 40 minutes')
-    
+    print time_to_mins('3 hours 40 minutes')    
