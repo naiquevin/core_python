@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import string
+import math
 
 # 8.4
 def is_prime(n):
@@ -149,6 +150,34 @@ class ContactBook(object):
         # sort here
         print cb
 
+# 8.12
+def bit_table(start, to):
+    """
+    (Integer) Bit Operators. Write a program that takes begin and end values and prints
+    out a decimal, binary, octal, hexadecimal chart like the one shown below. If any of the
+    characters are printable ASCII characters, then print those, too. If none is, you may
+    omit the ASCII column header.
+    """
+    cols = ('DEC', 'BIN', 'OCT', 'HEX')
+    data = [(str(n), bin(n), hex(n), oct(n)) for n in range(start, to+1)]
+    width = 12.0
+    # left margin
+    def ml(content):
+        return int(math.ceil(width - len(content))/2)
+    # right margin
+    def mr(content):
+        return int((width - len(c))/2)        
+
+    head_row = ''.join([ml(c) * ' ' +  c + mr(c) * ' ' for c in cols])
+    print head_row
+    dash = (len(head_row)+4) * '-'
+    print dash
+    for d in data:
+        row = [ml(s) * ' ' + s + mr(s) * ' ' for s in d]
+        print ''.join(row)
+    print dash
+
+
 if __name__ == '__main__':
     # print is_prime(227)
     # print getfactors(31)
@@ -157,6 +186,7 @@ if __name__ == '__main__':
     # print factorial(5)
     # print fibonacci(6)
     # print text_processor(text_processor.__doc__)
-    ContactBook.run()
+    # ContactBook.run()
+    bit_table(9, 36)
     pass
 
