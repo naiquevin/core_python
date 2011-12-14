@@ -1,0 +1,78 @@
+* Object Oriented Programming with Python
+** new-style classes and classic classes
+*** new style classes must inherit from atleast one parent
+*** "object" is the mother of all classes
+*** if a class does not subclass `object` then it's called a classic class
+*** most current python classes are classic ones
+*** will become obsolete in future
+** class instance not assigned to a variable
+   Animal() - is of no use if cannot be referenced later
+   memory allocated and immediately deallocated
+** self
+*** python's 'this'
+*** explicitly mentioned in method declarations
+*** implicitly passed by the interpreter
+** no 'new'
+*** word 'new' is not required to instantiate an object
+** __init__()
+*** Python's class constructor
+*** Special method
+*** It's not actually a constructor
+    It is used to carry out some special tasks _after_ the instance is created
+    and before it is returned to be assigned to a variable.
+    In short Python creates an object and __init__ is the first function to be called
+    after which the object is returned
+*** Arguments of the instance creation call Person(name, phone) is same as the arguments to __init__(self, name, phone)
+** Subclassing
+   Customizing a new class type with all features of an existing class but without modifying the original class 
+   definition
+*** if subclass has __init__() it will be called otherwise that of the base will be called (method overriding)
+*** if subclass has __init__() base __init__() will not be called automatically
+*** while calling parent's __init__() from the subclass, we need to explicitly pass the `self` arg
+** Naming convention
+*** Classes - UpperCamelCase
+*** variables, functions, methods etc - lowercase underscore separated
+** Python doesn't _require_ you to write OO code as in Java
+** In Python, all class attributes are public
+** Buzzword Compliance!
+*** Abstraction
+    Exposing only the behaviour that requires interfacing and implementing things that donot matter to the client
+    programmer
+*** Encapsulation
+    Protecting the object data by designing interfaces for the client programmer to interact with it
+*** Composition
+    Interaction and Relationship between various class. For eg. a has-a relationship between RockBand and Drummer
+*** Inheritence
+    Subclassing
+*** Polymorphism
+    Dynamic Binding, Runtime Type determination etc
+*** Introspection
+    Accessing the information of an object (not just data) from inside the object
+
+** Class methods Support
+*** Closures just as normal python functions
+** Classes do not support
+*** Pure virtual methods (as in C++)
+*** Abstract methods (as in Java)
+    However to get the same effect, have the method in the base class raise 
+    the NotImplementedError
+** Class Attributes
+*** Data tied to the class and not any particular instance
+*** Can be directly set from out side the class or inside the class (public)
+** TODO Calling Bound and Unbound methods
+*** An instance is always required for method execution
+*** To call an unbound method, the instance has to be explicitly passed
+** Determining class/instance attributes
+*** dir()
+*** __dict__
+*** other attributes __name__, __doc__, __module__
+** Classes are Objects!! [Refer. 13.5.1]
+*** python ver < 2.2 (Classical Classes)
+    When defining a new Class, you are not creating a new type but only a new object of type class
+*** python ver > 2.2
+    When defining a new Class, a new type is created
+** __new__() method
+*** TODO 
+** __del__() method - Destructor
+*** In python it is executed only when all the references of an instance object are removed
+*** Invoking del c does not call c.__del__ but it decrements the reference by 1
