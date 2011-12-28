@@ -23,6 +23,7 @@
     In short Python creates an object and __init__ is the first function to be called
     after which the object is returned
 *** Arguments of the instance creation call Person(name, phone) is same as the arguments to __init__(self, name, phone)
+*** Should not return anything but None as an instance is already being returned
 ** Subclassing
    Customizing a new class type with all features of an existing class but without modifying the original class 
    definition
@@ -34,6 +35,8 @@
 *** variables, functions, methods etc - lowercase underscore separated
 ** Python doesn't _require_ you to write OO code as in Java
 ** In Python, all class attributes are public
+*** Attributes can be set on-the-fly and anywhere in the code
+*** Caution, Use with care!!
 ** Buzzword Compliance!
 *** Abstraction
     Exposing only the behaviour that requires interfacing and implementing things that donot matter to the client
@@ -48,7 +51,6 @@
     Dynamic Binding, Runtime Type determination etc
 *** Introspection
     Accessing the information of an object (not just data) from inside the object
-
 ** Class methods Support
 *** Closures just as normal python functions
 ** Classes do not support
@@ -59,6 +61,15 @@
 ** Class Attributes
 *** Data tied to the class and not any particular instance
 *** Can be directly set from out side the class or inside the class (public)
+*** Can be accessed through the instance or the class :tricky:
+**** First checked in class
+**** then in instance
+**** then in base class
+*** Can be updated only through class
+*** If tried to update through the instance, a separate instance attr is created
+*** c.foo != C.foo until del c.foo
+*** Why the above behaviour ?
+    Because Class and Instance have their own respective __dict__ dictionaries
 ** TODO Calling Bound and Unbound methods
 *** An instance is always required for method execution
 *** To call an unbound method, the instance has to be explicitly passed
@@ -76,3 +87,7 @@
 ** __del__() method - Destructor
 *** In python it is executed only when all the references of an instance object are removed
 *** Invoking del c does not call c.__del__ but it decrements the reference by 1
+*** When the instance is deallocated, so are its attributes
+** Built in types have special methods too
+*** eg x = 3+0.14j, x.__class__
+*** BI-types do not have __dict__ method
